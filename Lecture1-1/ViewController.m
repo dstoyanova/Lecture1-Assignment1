@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @end
 
@@ -22,6 +22,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSLog(@"Text field is ready for typing.");
+    return YES;
+}
+
+- (IBAction)sayHelloAction:(id)sender {
+    NSString *yourName;
+    
+    if([self.nameTextField.text length] == 0) {
+        yourName = @"World";
+    }
+    else {
+        yourName = self.nameTextField.text;
+    }
+    
+    self.sayHelloLabel.text = [NSString stringWithFormat:@"Hello, %@!", yourName];
 }
 
 @end
